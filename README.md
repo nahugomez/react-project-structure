@@ -280,6 +280,7 @@ async function getUserProfile(userId) {
 ```
 
 **Linting & Formatting:** Se utiliza ESLint y Prettier para mantener buenas prácticas y estilo de código
+Previo a realizar un _commit_, se ejecutará automáticamente ESLint para aplicar las reglas establecidas.
 
 - **Herramientas:** Utilizar ESLint para mantener la calidad del código y Prettier para el formateo automático.
 - **Configuración:** Asegurarse de tener instaladas las siguientes extensiones en VSCode:
@@ -298,14 +299,6 @@ async function getUserProfile(userId) {
   "prettier.requireConfig": true
 }
 ```
-
-Se recomienda ejecutar el siguiente comando para realizar un linting y formateo de código en la carpeta `src` antes de realizar cualquier commit:
-
-```bash
-  pnpm run lint
-```
-
-Este comando ejecutará ESLint y aplicará las correcciones automáticas según las reglas configuradas.
 
 ## Buenas Prácticas
 
