@@ -1,5 +1,5 @@
-import { User } from "../../../domain/entities/User";
-import { UserDTO } from "../dtos/UserDTO";
+import { User } from '../../../domain/entities/User';
+import { UserDTO } from '../dtos/UserDTO';
 
 export class UserMapper {
   static toDomain(dto: UserDTO): User {
@@ -11,6 +11,6 @@ export class UserMapper {
   }
 
   static toDomainList(dtos: UserDTO[]): User[] {
-    return dtos.map((dto) => this.toDomain(dto));
+    return dtos.map(dto => this.toDomain(dto));
   }
 }

@@ -1,6 +1,6 @@
 // src/application/use_cases/GetUserUseCase.ts
-import { UserRepository } from "../../domain/repositories/UserRepository";
-import { User } from "../../domain/entities/User";
+import { UserRepository } from '../../domain/repositories/UserRepository';
+import { User } from '../../domain/entities/User';
 
 /**
  * Caso de uso para obtener un usuario por su ID.

@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useContext } from "react";
-import { User } from "../../../../domain/entities/User";
-import { GetUserUseCase } from "../../../../application/use_cases/GetUserUseCase";
-import { UserContext } from "../../contexts/UserContext";
+import React, { useEffect, useState, useContext } from 'react';
+import { User } from '../../../../domain/entities/User';
+import { GetUserUseCase } from '../../../../application/use_cases/GetUserUseCase';
+import { UserContext } from '../../contexts/UserContext';
 
 interface Props {
   userID: number;

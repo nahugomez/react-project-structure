@@ -1,6 +1,6 @@
-import React, { createContext } from "react";
-import { UserRepository } from "../../../domain/repositories/UserRepository";
-import { UserRepositoryImplementation } from "../../../infrastructure/repositories/UserRepositoryImplementation";
+import React, { createContext } from 'react';
+import { UserRepository } from '../../../domain/repositories/UserRepository';
+import { UserRepositoryImplementation } from '../../../infrastructure/repositories/UserRepositoryImplementation';
 
 const userRepository: UserRepository = new UserRepositoryImplementation();
 

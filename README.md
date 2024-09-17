@@ -72,7 +72,7 @@ src/
 
 ## Detalles de Cada Capa
 
-![Clean Architecture Folders](image.png)
+![Clean Architecture Folders](CleanArchitecture.png)
 
 **Importante**: La comunicación entre capas, se hace de manera descendente. Una capa inferior no puede comunicarse con una capa exterior.
 
@@ -123,7 +123,7 @@ export interface UserRepository {
 
 ```typescript
 import { UserRepository } from '../../domain/repositories/UserRepository';
-import { User} from '../../domain/entities/User';
+import { User } from '../../domain/entities/User';
 
 export class GetUserUseCase {
   private userRepository: UserRepository;
@@ -164,7 +164,9 @@ export class UserRepositoryImplementation implements UserRepository {
 
   async getByID(id: number): Promise<User | null> {
     try {
-      const response = await axios.get<UserDTO>(`${this.baseUrl}/usuarios/${id}`);
+      const response = await axios.get<UserDTO>(
+        `${this.baseUrl}/usuarios/${id}`,
+      );
       return UserMapper.toDomain(response.data);
     } catch {
       return null;
@@ -243,7 +245,7 @@ export const UserDatil: React.FC<Props> = ({ userID: userID }) => {
 
    ```bash
    cd react-clean-architecture
-   npm install
+   pnpm install
    ```
 
 3. **Configurar variables de entorno:**
@@ -253,7 +255,7 @@ export const UserDatil: React.FC<Props> = ({ userID: userID }) => {
 4. **Iniciar la aplicación:**
 
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 
    La aplicación estará disponible en `http://localhost:5147`.
@@ -264,6 +266,46 @@ export const UserDatil: React.FC<Props> = ({ userID: userID }) => {
   - **Clases y Tipos:** `PascalCase`
   - **Funciones y Variables:** `camelCase`
 - **Comentarios:** Utilizar JSDoc para documentación de funciones y clases.
+
+```js
+/**
+ * Devuelve la información de un usuario
+ *
+ * @param {number} userId - El ID del usuario.
+ * @returns {Promise<UserProfile>} La información del Usuario.
+ */
+async function getUserProfile(userId) {
+  // Implementation...
+}
+```
+
+**Linting & Formatting:** Se utiliza ESLint y Prettier para mantener buenas prácticas y estilo de código
+
+- **Herramientas:** Utilizar ESLint para mantener la calidad del código y Prettier para el formateo automático.
+- **Configuración:** Asegurarse de tener instaladas las siguientes extensiones en VSCode:
+  - ESLint: Para mostrar errores de linting en tiempo real.
+  - Prettier - Code formatter: Para formateo automático de código.
+
+```json
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "eslint.alwaysShowStatus": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "prettier.requireConfig": true
+}
+```
+
+Se recomienda ejecutar el siguiente comando para realizar un linting y formateo de código en la carpeta `src` antes de realizar cualquier commit:
+
+```bash
+  pnpm run lint
+```
+
+Este comando ejecutará ESLint y aplicará las correcciones automáticas según las reglas configuradas.
 
 ## Buenas Prácticas
 
