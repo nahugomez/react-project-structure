@@ -14,7 +14,7 @@ export class UserRepositoryImplementation implements UserRepository {
     throw new Error('Method not implemented.');
   }
 
-  private baseUrl: string = 'https://api.ejemplo.com';
+  private baseUrl: string = import.meta.env.CLIENT_API_URL;
 
   async getByID(id: number): Promise<User | null> {
     try {
