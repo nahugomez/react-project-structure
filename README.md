@@ -164,9 +164,7 @@ export class UserRepositoryImplementation implements UserRepository {
 
   async getByID(id: number): Promise<User | null> {
     try {
-      const response = await axios.get<UserDTO>(
-        `${this.baseUrl}/usuarios/${id}`,
-      );
+      const response = await axios.get<UserDTO>(`${this.baseUrl}/users/${id}`);
       return UserMapper.toDomain(response.data);
     } catch {
       return null;

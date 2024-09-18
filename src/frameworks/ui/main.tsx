@@ -1,6 +1,6 @@
-import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { UserProvider } from './contexts/UserContext.tsx';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App.tsx';
 
 async function enableMocking() {
@@ -14,10 +14,10 @@ async function enableMocking() {
 
 enableMocking().then(() => {
   createRoot(document.getElementById('root')!).render(
-    <StrictMode>
+    <BrowserRouter>
       <UserProvider>
         <App />
       </UserProvider>
-    </StrictMode>,
+    </BrowserRouter>,
   );
 });
