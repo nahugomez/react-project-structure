@@ -160,7 +160,7 @@ import { UserDTO } from '../http/dtos/UserDTO';
 import { UserMapper } from '../http/mappers/UserMapper';
 
 export class UserRepositoryImplementation implements UserRepository {
-  private baseUrl: string = 'https://api.ejemplo.com';
+  private baseUrl: string = 'https://api.example.com';
 
   async getByID(id: number): Promise<User | null> {
     try {
@@ -228,8 +228,11 @@ export const UserDatil: React.FC<Props> = ({ userID: userID }) => {
 - **React** con **TypeScript**
 - **Axios** para llamadas HTTP
 - **Context API** de React para inyección de dependencias
-- **ChakraUI** (opcional) para componentes de UI
-- **React Router** (opcional) para enrutamiento
+  - Puede verse de integrar una librería para el manejo de estados, como Redux o Zustand.
+- **MSW** para hacer mocking de las consultas a la API
+- **React Router** para enrutamiento
+- **ChakraUI** para componentes de UI
+- **Husky** para hacer uso de los hooks de Git
 
 ## Configuración y Puesta en Marcha
 
@@ -284,6 +287,8 @@ Previo a realizar un _commit_, se ejecutará automáticamente ESLint para aplica
 - **Configuración:** Asegurarse de tener instaladas las siguientes extensiones en VSCode:
   - ESLint: Para mostrar errores de linting en tiempo real.
   - Prettier - Code formatter: Para formateo automático de código.
+
+Recomiendo colocar dentro de la carpeta `.vscode/` el siguiente JSON de configuración para el editor de código:
 
 ```json
 {
