@@ -17,6 +17,7 @@ Este proyecto es una aplicación **React** construida con **TypeScript**, estruc
 - [Tecnologías Utilizadas](#tecnologías-utilizadas)
 - [Configuración y Puesta en Marcha](#configuración-y-puesta-en-marcha)
 - [Convenciones de Código](#convenciones-de-código)
+- [Tests](#tests-y-coverage)
 - [Buenas Prácticas](#buenas-prácticas)
 - [Contribución](#contribución)
 - [Contacto](#contacto)
@@ -302,6 +303,22 @@ Recomiendo colocar dentro de la carpeta `.vscode/` el siguiente JSON de configur
   "prettier.requireConfig": true
 }
 ```
+
+## Tests y Coverage
+
+El proyecto está configurado para utilizar [Vitest](https://vitest.dev/) como framework de tests. Para ejecutar los tests, y desplegar una interfaz gráfica para visualizar los resultados, ejecutar el siguiente comando:
+
+```bash
+pnpm test
+```
+
+Para ejecutar los tests con cobertura, ejecutar el siguiente comando:
+
+```bash
+pnpm coverage
+```
+
+Esto va a generar un archivo `coverage/index.html` que se puede abrir en un navegador para ver los resultados de las pruebas.
 
 ## Buenas Prácticas
 
