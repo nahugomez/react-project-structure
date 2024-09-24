@@ -9,7 +9,8 @@
     "lint": "eslint --fix .",
     "preview": "vite preview",
     "prepare": "husky install",
-    "test": "vitest --ui",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
