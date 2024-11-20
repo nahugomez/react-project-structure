@@ -1,36 +1,18 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { User } from '../../../../domain/entities/User';
-import { GetUserUseCase } from '../../../../application/use_cases/GetUserUseCase';
-import { UserContext } from '../../contexts/UserContext';
-import { useParams } from 'react-router-dom';
+import React from 'react';
+import { useAuth } from '../../contexts/useAuth';
 
-type UserDetailParams = {
-  id: string;
-};
+export const UserDetail: React.FC = () => {
+  const { isAuthenticated, profile } = useAuth();
 
-export const UserDatil: React.FC = () => {
-  const { id } = useParams<UserDetailParams>();
-  const { userRepository } = useContext(UserContext);
-  const [user, setUser] = useState<User | null>(null);
-
-  useEffect(() => {
-    const getUser = async () => {
-      const useCase = new GetUserUseCase(userRepository);
-      const userData = await useCase.execute(Number(id));
-      setUser(userData);
-    };
-    getUser();
-  }, [id, userRepository]);
-
-  if (!user) {
-    return <div>Cargando...</div>;
+  if (!isAuthenticated) {
+    return <div>Loading...</div>;
   }
 
   return (
     <div>
-      <h2>{user.name}</h2>
-      <p>Email: {user.email}</p>
-      <p>Identificador: {user.id}</p>
+      <h1>User Detail</h1>
+      <p>Username: {profile?.username}</p>
+      <p>Email: {profile?.email}</p>
     </div>
   );
 };

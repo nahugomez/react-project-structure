@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
-import { UserProvider } from './contexts/UserContext.tsx';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App.tsx';
+import { AuthProvider } from './contexts/AuthContext';
 
 async function enableMocking() {
   if (!import.meta.env.DEV) {
@@ -14,10 +14,10 @@ async function enableMocking() {
 
 enableMocking().then(() => {
   createRoot(document.getElementById('root')!).render(
-    <BrowserRouter>
-      <UserProvider>
+    <AuthProvider>
+      <BrowserRouter>
         <App />
-      </UserProvider>
-    </BrowserRouter>,
+      </BrowserRouter>
+    </AuthProvider>,
   );
 });
