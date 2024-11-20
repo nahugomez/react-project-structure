@@ -4,6 +4,7 @@ import App from './App.tsx';
 import { usePreferencesStore } from './stores/preferencesStore';
 import { notificationWs } from '../../infrastructure/websocket/notificationWebSocket.ts';
 import './styles/global.css';
+import { AuthProvider } from './contexts/AuthContext';
 
 // Initialize preferences and WebSocket
 const initialize = () => {
@@ -36,8 +37,10 @@ async function initMockServiceWorker() {
 initMockServiceWorker().then(() => {
   initialize();
   createRoot(document.getElementById('root')!).render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>,
+    <AuthProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </AuthProvider>,
   );
 });

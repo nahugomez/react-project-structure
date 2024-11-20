@@ -11,6 +11,9 @@ importers:
       axios:
         specifier: ^1.7.7
         version: 1.7.7
+      keycloak-js:
+        specifier: ^26.0.7
+        version: 26.0.7
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -1307,6 +1310,9 @@ packages:
 
   json-stable-stringify-without-jsonify@1.0.1:
     resolution: {integrity: sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==}
+
+  keycloak-js@26.0.7:
+    resolution: {integrity: sha512-vKCk1ISMiouYRLjMzi5fKp58RnYxKEBS29BoDgVfYwVW94IXchj9jLqBvIet31VD1v79l3WaWT+WMX7fH8O4wA==}
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
@@ -3143,6 +3149,8 @@ snapshots:
   json-schema-traverse@0.4.1: {}
 
   json-stable-stringify-without-jsonify@1.0.1: {}
+
+  keycloak-js@26.0.7: {}
 
   keyv@4.5.4:
     dependencies:
