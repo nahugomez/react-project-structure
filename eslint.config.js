@@ -34,7 +34,12 @@ export default {
     // Reglas recomendadas de React Hooks
     ...reactHooks.configs.recommended.rules,
     // Reglas de Prettier
-    'prettier/prettier': 'warn',
+    'prettier/prettier': [
+      'warn',
+      {
+        endOfLine: 'off',
+      },
+    ],
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
