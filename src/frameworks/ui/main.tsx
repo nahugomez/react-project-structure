@@ -1,23 +1,43 @@
 import { createRoot } from 'react-dom/client';
-import { UserProvider } from './contexts/UserContext.tsx';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App.tsx';
+import { usePreferencesStore } from './stores/preferencesStore';
+import { notificationWs } from '../../infrastructure/websocket/notificationWebSocket.ts';
+import './styles/global.css';
 
-async function enableMocking() {
-  if (!import.meta.env.DEV) {
-    return;
+// Initialize preferences and WebSocket
+const initialize = () => {
+  const { theme, language, fontSize, reducedMotion } =
+    usePreferencesStore.getState();
+
+  document.documentElement.setAttribute('data-theme', theme);
+  document.documentElement.setAttribute('lang', language);
+  document.documentElement.style.fontSize = `${fontSize}px`;
+  document.documentElement.setAttribute(
+    'data-reduced-motion',
+    reducedMotion.toString(),
+  );
+
+  // Initialize WebSocket connection
+  notificationWs.connect();
+};
+
+async function initMockServiceWorker() {
+  if (import.meta.env.MODE === 'development') {
+    const { worker } = await import('../../infrastructure/mocks/browser');
+    return worker.start({
+      onUnhandledRequest: 'bypass',
+    });
   }
-
-  const { worker } = await import('./../../infrastructure/mocks/browser.ts');
-  return worker.start();
+  return Promise.resolve();
 }
 
-enableMocking().then(() => {
+// Initialize MSW before rendering the app
+initMockServiceWorker().then(() => {
+  initialize();
   createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
-      <UserProvider>
-        <App />
-      </UserProvider>
+      <App />
     </BrowserRouter>,
   );
 });

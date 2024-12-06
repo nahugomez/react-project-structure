@@ -1,16 +1,16 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { User } from '../../../../domain/entities/User';
 import { GetUserUseCase } from '../../../../application/use_cases/GetUserUseCase';
-import { UserContext } from '../../contexts/UserContext';
 import { useParams } from 'react-router-dom';
+import { useUserStore } from '../../stores/userStore';
 
 type UserDetailParams = {
   id: string;
 };
 
-export const UserDatil: React.FC = () => {
+export const UserDetail: React.FC = () => {
   const { id } = useParams<UserDetailParams>();
-  const { userRepository } = useContext(UserContext);
+  const { userRepository } = useUserStore();
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
