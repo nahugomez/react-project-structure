@@ -1,8 +1,8 @@
 import React from 'react';
-import { useAuth } from '../../contexts/useAuth';
+import { useAuthStore } from '../../stores/useAuthStore';
 
-export const UserDetail: React.FC = () => {
-  const { isAuthenticated, profile } = useAuth();
+export const UserDetails: React.FC = () => {
+  const { isAuthenticated, profile } = useAuthStore();
 
   if (!isAuthenticated) {
     return <div>Loading...</div>;

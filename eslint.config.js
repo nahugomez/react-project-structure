@@ -37,7 +37,7 @@ export default {
     'prettier/prettier': [
       'warn',
       {
-        endOfLine: 'off',
+        endOfLine: 'auto',
       },
     ],
     'react-refresh/only-export-components': [
