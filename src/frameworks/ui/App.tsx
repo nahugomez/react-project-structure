@@ -1,9 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 import { UserDetail } from './pages/UserDetail/UserDetail';
-import { Home } from './pages/Application/Home';
 import { NotificationCenter } from './components/Notifications/NotificationCenter';
 import { Preferences } from './components/Preferences/Preferences';
-
+import { Button } from './ui/button';
 function App() {
   return (
     <div className="app">
@@ -31,12 +30,12 @@ function App() {
             zIndex: 1000,
           }}
         >
+          <Button variant="outline">Hello</Button>
           <Preferences />
         </div>
       </div>
 
       <Routes>
-        <Route index element={<Home />} />
         <Route path="users">
           <Route path=":id" element={<UserDetail />} />
         </Route>

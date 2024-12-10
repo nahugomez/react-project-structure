@@ -3,6 +3,7 @@
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
+import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -11,5 +12,10 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./src/frameworks/ui/setupTests.ts'],
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
   },
 });
