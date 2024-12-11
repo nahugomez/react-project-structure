@@ -43,8 +43,14 @@ export const useAuthStore = create<AuthState>(set => ({
       });
       const authenticated = await keycloakInstance.init({
         onLoad: 'check-sso',
-        silentCheckSsoRedirectUri:
-          window.location.origin + '/silent-check-sso.html',
+        ...(import.meta.env.PROD
+          ? {
+              silentCheckSsoRedirectUri:
+                window.location.origin + '/silent-check-sso.html',
+            }
+          : {
+              checkLoginIframe: false,
+            }),
       });
 
       set({
