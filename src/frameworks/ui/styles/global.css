@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --background-color: #ffffff;
   --text-primary: #000000;
@@ -24,4 +28,10 @@ body {
 [data-reduced-motion="true"] * {
   animation: none !important;
   transition: none !important;
-} 
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
