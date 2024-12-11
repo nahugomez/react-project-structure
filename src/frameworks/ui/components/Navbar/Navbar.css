@@ -1,0 +1,224 @@
+.navbar {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.navbar-logo img {
+  height: 32px;
+  width: auto;
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.navbar-item {
+  text-decoration: none;
+  color: #666;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.navbar-item:hover {
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+.navbar-item.active {
+  color: #0066cc;
+  background-color: #e6f0ff;
+}
+
+.navbar-end {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-user-menu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #333;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.navbar-profile:hover {
+  background-color: #f5f5f5;
+}
+
+.navbar-avatar {
+  width: 32px;
+  height: 32px;
+  background-color: #0066cc;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.navbar-logout {
+  padding: 0.5rem 1rem;
+  border: 1px solid #dc3545;
+  color: #dc3545;
+  background: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.navbar-logout:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.navbar-login {
+  padding: 0.5rem 1rem;
+  background-color: #0066cc;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.navbar-login:hover {
+  background-color: #0052a3;
+}
+
+@media (max-width: 768px) {
+  .navbar-menu {
+    display: none;
+  }
+
+  .navbar-container {
+    padding: 0.5rem;
+  }
+
+  .navbar-user-menu span {
+    display: none;
+  }
+}
+
+.navbar-dropdown-container {
+  position: relative;
+}
+
+.navbar-icon-button {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.navbar-icon-button:hover {
+  background-color: #f5f5f5;
+}
+
+.notification-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #dc3545;
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.125rem 0.375rem;
+  border-radius: 1rem;
+  min-width: 1.25rem;
+  text-align: center;
+}
+
+.navbar-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 320px;
+  max-height: 480px;
+  overflow-y: auto;
+}
+
+.notifications-dropdown {
+  width: 400px;
+}
+
+.preferences-dropdown {
+  width: 320px;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .navbar-dropdown {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+  }
+
+  .navbar-icon-button:hover {
+    background-color: #333;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .navbar-dropdown {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    margin: 0;
+    width: 100% !important;
+    height: calc(100vh - 60px);
+    max-height: none;
+    border-radius: 0;
+  }
+}

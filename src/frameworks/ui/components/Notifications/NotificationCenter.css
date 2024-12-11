@@ -25,81 +25,105 @@
 }
 
 .notification-center {
-  background: var(--background-color, #fff);
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  padding: 16px;
+  padding: 1rem;
 }
 
 .notification-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.notification-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
 }
 
 .notification-actions {
   display: flex;
-  gap: 8px;
   align-items: center;
+  gap: 1rem;
 }
 
 .connection-status {
   font-size: 0.875rem;
-  padding: 4px 8px;
-  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
 }
 
 .connection-status.connected {
-  background: #e6ffe6;
-  color: #008000;
+  background-color: #d4edda;
+  color: #155724;
 }
 
 .connection-status.disconnected {
-  background: #ffe6e6;
-  color: #ff0000;
+  background-color: #f8d7da;
+  color: #721c24;
 }
 
 .notification-list {
-  max-height: 400px;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .notification-item {
-  padding: 12px;
+  padding: 0.75rem;
   border-radius: 4px;
-  margin-bottom: 8px;
-  background: var(--notification-bg, #f5f5f5);
-  border-left: 4px solid transparent;
-  animation: slideIn 0.3s ease-out;
+  background-color: #f8f9fa;
+  border-left: 4px solid #ddd;
 }
 
 .notification-item.unread {
-  border-left-color: #007bff;
-  background: var(--notification-unread-bg, #f0f7ff);
-  animation: pulse 0.5s ease-out;
+  background-color: #e6f0ff;
+  border-left-color: #0066cc;
 }
 
-.notification-item.system {
-  border-left-color: #ffd700;
+.notification-item.error {
+  border-left-color: #dc3545;
 }
 
-.notification-item.message {
+.notification-item.warning {
+  border-left-color: #ffc107;
+}
+
+.notification-item.success {
   border-left-color: #28a745;
 }
 
 .notification-content {
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.notification-content p {
+  margin: 0;
+  margin-bottom: 0.25rem;
 }
 
 .notification-content small {
-  color: var(--text-secondary, #666);
-  display: block;
-  margin-top: 4px;
+  color: #6c757d;
 }
 
 .no-notifications {
   text-align: center;
-  padding: 20px;
-  color: var(--text-secondary, #666);
-} 
+  padding: 2rem;
+  color: #6c757d;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .notification-item {
+    background-color: #2d2d2d;
+  }
+
+  .notification-item.unread {
+    background-color: #1a2634;
+  }
+
+  .notification-content small {
+    color: #adb5bd;
+  }
+}

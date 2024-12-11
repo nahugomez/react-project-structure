@@ -1,12 +1,14 @@
-import axios from 'axios';
+import useSWR from 'swr';
 import { UserRepository } from '../../domain/repositories/UserRepository';
 import { User } from '../../domain/entities/User';
 import { UserDTO } from '../http/dtos/UserDTO';
 import { UserMapper } from '../http/mappers/UserMapper';
+import { axiosInstance } from '../http/axios-config';
 
 export class UserRepositoryImplementation implements UserRepository {
-  getAll(): Promise<User[]> {
-    throw new Error('Method not implemented.');
+  async getAll(): Promise<User[]> {
+    const response = await axiosInstance.get<UserDTO[]>('/users');
+    return response.data.map(UserMapper.toDomain);
   }
 
   save(user: User): Promise<void> {
@@ -14,14 +16,35 @@ export class UserRepositoryImplementation implements UserRepository {
     throw new Error('Method not implemented.');
   }
 
-  private baseUrl: string = import.meta.env.CLIENT_API_URL;
-
   async getByID(id: number): Promise<User | null> {
-    try {
-      const response = await axios.get<UserDTO>(`${this.baseUrl}/users/${id}`);
-      return UserMapper.toDomain(response.data);
-    } catch {
-      return null;
-    }
+    const response = await axiosInstance.get<UserDTO>(`/users/${id}`);
+    return UserMapper.toDomain(response.data);
   }
+}
+
+export function useUser(id: number) {
+  const repository = new UserRepositoryImplementation();
+  const { data, error, isLoading } = useSWR<User | null>(
+    id ? `user-${id}` : null,
+    () => repository.getByID(id),
+  );
+
+  return {
+    user: data,
+    isLoading,
+    isError: error,
+  };
+}
+
+export function useUsers() {
+  const repository = new UserRepositoryImplementation();
+  const { data, error, isLoading } = useSWR<User[]>('users', () =>
+    repository.getAll(),
+  );
+
+  return {
+    users: data || [],
+    isLoading,
+    isError: error,
+  };
 }
