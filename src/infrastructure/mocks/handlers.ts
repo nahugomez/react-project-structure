@@ -25,17 +25,42 @@ const mockNotifications = [
 
 const notifications = ws.link(WS_URL);
 
+const mockUsers: UserDTO[] = [
+  {
+    id: 1,
+    name: 'John Doe',
+    email: 'john.doe@example.com',
+    createdAt: '2019-01-15T13:13:42.22054Z',
+    updatedAt: '2019-01-15T13:13:42.22054Z',
+  },
+  {
+    id: 2,
+    name: 'Jane Smith',
+    email: 'jane.smith@example.com',
+    createdAt: '2019-02-15T14:15:42.22054Z',
+    updatedAt: '2019-02-15T14:15:42.22054Z',
+  },
+  {
+    id: 3,
+    name: 'Bob Johnson',
+    email: 'bob.johnson@example.com',
+    createdAt: '2019-03-15T15:17:42.22054Z',
+    updatedAt: '2019-03-15T15:17:42.22054Z',
+  },
+];
+
 export const handlers = [
-  http.get(`${import.meta.env.CLIENT_API_URL}/users/:id`, ({ params }) => {
+  http.get(`${import.meta.env.VITE_CLIENT_API_URL}/users`, () => {
+    return HttpResponse.json(mockUsers);
+  }),
+  http.get(`${import.meta.env.VITE_CLIENT_API_URL}/users/:id`, ({ params }) => {
     const { id } = params;
-    console.log(`Captured a [GET] /users/${id} request`);
-    const user: UserDTO = {
-      id: Number(id),
-      name: 'John Doe',
-      email: 'john.doe@example.com',
-      createdAt: '2019-01-15T13:13:42.22054Z',
-      updatedAt: '2019-01-15T13:13:42.22054Z',
-    };
+    const user = mockUsers.find(u => u.id === Number(id));
+
+    if (!user) {
+      return new HttpResponse(null, { status: 404 });
+    }
+
     return HttpResponse.json(user);
   }),
   notifications.addEventListener('connection', ({ client }) => {

@@ -1,0 +1,16 @@
+.user-info {
+  padding: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.user-field {
+  margin: 1rem 0;
+  display: flex;
+  gap: 1rem;
+}
+
+.user-field label {
+  font-weight: bold;
+  min-width: 100px;
+}

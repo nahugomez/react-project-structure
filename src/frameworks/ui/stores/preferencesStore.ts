@@ -41,6 +41,19 @@ const defaultPreferences = {
   reducedMotion: false,
 };
 
+export function initializePreferences() {
+  const { theme, language, fontSize, reducedMotion } =
+    usePreferencesStore.getState();
+
+  document.documentElement.setAttribute('data-theme', theme);
+  document.documentElement.setAttribute('lang', language);
+  document.documentElement.style.fontSize = `${fontSize}px`;
+  document.documentElement.setAttribute(
+    'data-reduced-motion',
+    reducedMotion.toString(),
+  );
+}
+
 export const usePreferencesStore = create<PreferencesState>()(
   persist(
     set => ({

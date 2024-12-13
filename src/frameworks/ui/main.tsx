@@ -1,26 +1,8 @@
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router';
 import App from './App.tsx';
-import { usePreferencesStore } from './stores/preferencesStore';
-import { notificationWs } from '../../infrastructure/websocket/notificationWebSocket.ts';
+import { initializePreferences } from './stores/preferencesStore';
 import './styles/global.css';
-
-// Initialize preferences and WebSocket
-const initialize = () => {
-  const { theme, language, fontSize, reducedMotion } =
-    usePreferencesStore.getState();
-
-  document.documentElement.setAttribute('data-theme', theme);
-  document.documentElement.setAttribute('lang', language);
-  document.documentElement.style.fontSize = `${fontSize}px`;
-  document.documentElement.setAttribute(
-    'data-reduced-motion',
-    reducedMotion.toString(),
-  );
-
-  // Initialize WebSocket connection
-  notificationWs.connect();
-};
 
 async function initMockServiceWorker() {
   if (import.meta.env.MODE === 'development') {
@@ -34,7 +16,7 @@ async function initMockServiceWorker() {
 
 // Initialize MSW before rendering the app
 initMockServiceWorker().then(() => {
-  initialize();
+  initializePreferences();
   createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <App />

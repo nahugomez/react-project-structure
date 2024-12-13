@@ -1,46 +1,33 @@
-import { Route, Routes } from 'react-router-dom';
-import { UserDetail } from './pages/UserDetail/UserDetail';
-import { NotificationCenter } from './components/Notifications/NotificationCenter';
-import { Preferences } from './components/Preferences/Preferences';
-import { Button } from './ui/button';
+import { Route, Routes } from 'react-router';
+import { UserDetails } from './pages/UserDetails/UserDetails';
+import { Users } from './pages/Users/Users';
+import { Profile } from './pages/Profile/Profile';
+import { Home } from './pages/Application/Home';
+import { Layout } from './components/Layout';
+import { ErrorBoundary } from './components/ErrorBoundary/ErrorBoundary';
+import { AuthLoader } from './components/AuthLoader/AuthLoader';
+import { WebSocketLoader } from './components/WebSocketLoader/WebSocketLoader';
+
 function App() {
   return (
-    <div className="app">
-      <div className="floating-panels">
-        <div
-          className="notification-wrapper"
-          style={{
-            position: 'fixed',
-            top: '20px',
-            right: '20px',
-            zIndex: 1000,
-            maxWidth: '400px',
-            width: '100%',
-          }}
-        >
-          <NotificationCenter />
-        </div>
-
-        <div
-          className="preferences-wrapper"
-          style={{
-            position: 'fixed',
-            top: '20px',
-            left: '20px',
-            zIndex: 1000,
-          }}
-        >
-          <Button variant="outline">Hello</Button>
-          <Preferences />
-        </div>
-      </div>
-
-      <Routes>
-        <Route path="users">
-          <Route path=":id" element={<UserDetail />} />
-        </Route>
-      </Routes>
-    </div>
+    <ErrorBoundary>
+      <AuthLoader />
+      <WebSocketLoader />
+      <main className="app-main">
+        <Routes>
+          <Route element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="users" element={<Users />}>
+              <Route index element={<div>Select a user to view details</div>} />
+              <Route path=":id" element={<UserDetails />} />
+            </Route>
+            <Route path="public-area" element={<div>Public Area</div>} />
+            <Route path="admin-area" element={<div>Admin Area</div>} />
+          </Route>
+        </Routes>
+      </main>
+    </ErrorBoundary>
   );
 }
 

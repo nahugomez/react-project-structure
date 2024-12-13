@@ -1,5 +1,9 @@
 import React from 'react';
-import { usePreferencesStore } from '../../stores/preferencesStore';
+import {
+  Language,
+  Theme,
+  usePreferencesStore,
+} from '../../stores/preferencesStore';
 import './Preferences.css';
 
 export const Preferences: React.FC = () => {
@@ -21,7 +25,10 @@ export const Preferences: React.FC = () => {
       <div className="preference-group">
         <label>
           Theme:
-          <select value={theme} onChange={e => setTheme(e.target.value)}>
+          <select
+            value={theme}
+            onChange={e => setTheme(e.target.value as Theme)}
+          >
             <option value="light">Light</option>
             <option value="dark">Dark</option>
             <option value="system">System</option>
@@ -32,7 +39,10 @@ export const Preferences: React.FC = () => {
       <div className="preference-group">
         <label>
           Language:
-          <select value={language} onChange={e => setLanguage(e.target.value)}>
+          <select
+            value={language}
+            onChange={e => setLanguage(e.target.value as Language)}
+          >
             <option value="en">English</option>
             <option value="es">Español</option>
             <option value="fr">Français</option>
